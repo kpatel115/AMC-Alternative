@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-function App() {
+function Home() {
   const [endPoint, setEndpoints] = useState<string>('');
   const [container, setContainer] = useState<any[]>([]);
   const [finalPoint, setFinalPoint] = useState<string>('');
@@ -51,7 +51,8 @@ function App() {
             <div key={index} className='h-96 p-3 rounded-lg mt-0 mb-0 ml-auto mr-auto'>
               <img src={item.image.url} alt="Poster for displayed movie" />
               <p>{item.title}</p>
-              <Link href="./details">{item.id}</Link>
+              <p>{item.id}</p>
+              <Link href="/post-details">details</Link>
             </div>
           )
         })}
@@ -60,6 +61,6 @@ function App() {
   )
 }
 
-export default App;
+export default Home;
 
 
