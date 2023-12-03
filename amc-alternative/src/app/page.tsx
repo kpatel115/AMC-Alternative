@@ -1,16 +1,26 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import {BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import Link from 'next/link';
+import ModalOpen from '../components/ConfirmationModal';
 
+import MovieDetails from '../components/details';
+import ConfirmationModal from '../components/ConfirmationModal';
+
+
+// Main Function for web app
 function App() {
+  const [movieID, setMovieID] = useState<string>('');
   const [endPoint, setEndpoints] = useState<string>('');
   const [container, setContainer] = useState<any[]>([]);
   const [finalPoint, setFinalPoint] = useState<string>('');
+  const [confirmationModalOpen, setConfirmationModalOpen] = useState<boolean>(true);
 
   useEffect(() => {
     fetchMe()
   }, [finalPoint])
 
+  // Main Fetch API for Search Results
   const fetchMe = () => {
     fetch(`https://online-movie-database.p.rapidapi.com/title/v2/find?title=+${endPoint}&limit=8`, {
       'method': 'GET',
@@ -23,11 +33,15 @@ function App() {
         return response.json();
       })
       .then(data => {
-        setContainer(data.results)
+        console.log(data.results);
+        setContainer(data.results) 
       })
       .catch(err => {
         console.error(err);
       });
+  }
+  const onClickDetails = () => {
+    setMovieID(movieID)
   }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,22 +53,49 @@ function App() {
     setFinalPoint(endPoint)
   }
 
+  // Main Function Return
   return (
     <div className='bg-white-500 h-screen w-screen'>
       <form onSubmit={submitHandler}>
         <input className='block bg-gray-200 ' type='text' value={endPoint} onChange={onChangeHandler}></input>
         <button className='bg-blue-100 p-2 m-2' type='submit'>Submit</button>
       </form>
+
+      { // Display All Search Result Data for User }
       <div className='grid grid-cols-4 gap-2 justify-center items-center'>
+
         {container.map((item, index) => {
+
           return (
             <div key={index} className='h-96 p-3 rounded-lg mt-0 mb-0 ml-auto mr-auto'>
               <img src={item.image.url} alt="Poster for displayed movie" />
               <p>{item.title}</p>
-              <Link href="./details">{item.id}</Link>
+              <button onClick={onClickDetails}>Details</button>
+
+              {/* <Router>
+                <Routes>
+                <Route path='/details' element={<MovieDetails />} />
+                </Routes>
+              </Router> */}
+
+              {/* <Link href="details.tsx">Click on me PLZ</Link> */}
+
+              {confirmationModalOpen && (
+                <ConfirmationModal
+                isOpen={confirmationModalOpen}
+                handleClose={() => setConfirmationModalOpen(!confirmationModalOpen)}
+                >  
+                <MovieDetails></MovieDetails>
+                </ConfirmationModal>
+              
+              )}
+              
+                
             </div>
           )
-        })}
+
+        })
+        }
       </div>
     </div>
   )
