@@ -55,7 +55,7 @@ const ConfirmationModal = ({
         return response.json();
       })
       .then(data => {
-        console.log('Data from Details API: ', data, data.results)
+        console.log('Data from Details API: ', data)
         setContainer(data.results)
       })
       .catch(err => {
@@ -75,23 +75,21 @@ const ConfirmationModal = ({
                 <div className='box-border h-5/6'>{children}
                     {container && container.map((id) => {
                         return (
-                            <div key={id} className=''>
+                            <div className='h-5 p-5 m-3 flex justify-center align-center'>
                                 <p>Hello</p>
-{/* 
-                            <img src={item.image.url} alt="Poster for displayed movie" />
                             <label>Title</label> 
-                            <p>{item.title.title}</p>
+                            <p>{id.title.title}</p>
                             <label>Type</label>
-                            <p>{item.title.titleType}</p>
+                            <p>{id.title.titleType}</p>
                             <label>Cert</label>
-                            <p>{item.certificates.US.certificate}</p>
+                            <p>{id.certificates.US.certificate}</p>
                             <label>Rating</label>
-                            <p>{item.ratings.rating}</p>
+                            <p>{id.ratings.rating}</p>
                             <label>Genre</label>
-                            <p>{item.genres[0]}</p>
+                            <p>{id.genres}</p>
                             <label>Title</label>
-                            <p>{item.plotSummary.text}</p>
-             */}
+                            <p>{id.plotSummary.text}</p>
+            
                                  
                         </div>)
                     })}
