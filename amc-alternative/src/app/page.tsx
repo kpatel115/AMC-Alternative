@@ -15,9 +15,7 @@ function App() {
 
   const [confirmationModalOpen, setConfirmationModalOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    fetchMe()
-  }, [finalPoint])
+
 
   // Main Fetch API for Search Results
   const fetchMe = () => {
@@ -39,6 +37,10 @@ function App() {
         console.error(err);
       });
   }
+
+  useEffect(() => {
+    fetchMe()
+  }, [finalPoint,fetchMe])
   // const onClickDetails = () => {
   //   setMovieID(movieID)
   // }
@@ -83,8 +85,8 @@ function App() {
                 id={item.id.replace(/\D/g,'')}
                 isOpen={confirmationModalOpen}
                 handleClose={() => setConfirmationModalOpen(!confirmationModalOpen)}
-                >  
-                </ConfirmationModal> 
+                />  
+                
               
               
                 

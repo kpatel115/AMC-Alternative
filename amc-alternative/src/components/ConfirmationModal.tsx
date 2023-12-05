@@ -36,10 +36,6 @@ const ConfirmationModal = ({
         };
     }, [isOpen]);
 
-    // get details
-    useEffect(() => {
-        fetchDetails()
-      }, [id]);
 
     // FetchDetails function used in the useEffect #3
 
@@ -63,6 +59,12 @@ const ConfirmationModal = ({
           console.error('error fetching data',err);
       });
     }
+
+        // get details
+    useEffect(() => {
+        fetchDetails()
+    }, [id, fetchDetails]);
+    
     ////////////////////////////////////////////////////////
 
     if (!isOpen) return null;

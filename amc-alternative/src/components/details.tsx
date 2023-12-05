@@ -4,16 +4,16 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 
 
-const router = useRouter();
-const data = router.query
+
+// 
 function MovieDetails() {
+  const router = useRouter();
+  const data = router.query
   const [endPoint, setEndpoints] = useState<string>('');
   const [container, setContainer] = useState<any[]>([]);
   const [finalPoint, setFinalPoint] = useState<string>('');
 
-  useEffect(() => {
-    fetchDetails()
-  }, [finalPoint])
+ 
 
   const fetchDetails = () => {
     fetch(`https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst=+${endPoint}&currentCountry=US`, {
@@ -33,7 +33,9 @@ function MovieDetails() {
       console.error(err);
   });
 }
-
+  useEffect(() => {
+    fetchDetails()
+  }, [finalPoint, fetchDetails])
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEndpoints(e.target.value)
