@@ -52,6 +52,7 @@ const ConfirmationModal = ({
         }
       })
       .then((response) => {
+        console.log(response.json)
         return response.json();
       })
       .then(data => {
@@ -70,30 +71,23 @@ const ConfirmationModal = ({
         <ReactPortal wrapperId = 'react-portal-modal-container'>
         <>
             <div className='fixed top-0 left-0 w-screen h-screen z-40 bg-neutral-80 opacity-50' />
-            <div className='fixed rounded flex flex-col box-border min-w-fit overflow-hidden p-5 bg-zinc-800 inset-y-32 inset-x-32'>
-                <button onClick={handleClose} className='py-3 px-8 self-end font-bold hover:bg-violet-600 border rounded-md'>Close</button>
-                <div className='box-border h-5/6'>{children}
-                    {container && container.map((id) => {
-                        return (
-                            <div className='h-5 p-5 m-3 flex justify-center align-center'>
-                                <p>Hello</p>
-                            <label>Title</label> 
-                            <p>{id.title.title}</p>
-                            <label>Type</label>
-                            <p>{id.title.titleType}</p>
-                            <label>Cert</label>
-                            <p>{id.certificates.US.certificate}</p>
-                            <label>Rating</label>
-                            <p>{id.ratings.rating}</p>
-                            <label>Genre</label>
-                            <p>{id.genres}</p>
-                            <label>Title</label>
-                            <p>{id.plotSummary.text}</p>
             
-                                 
-                        </div>)
+            <div className='fixed rounded flex flex-col box-border min-w-fit overflow-hidden p-5 bg-zinc-800 inset-y-32 inset-x-32'> 
+                <div className='box-border'>
+                    {/* {children} */}
+                    {container && container.map((item) => {
+                        return (
+                            <div className='h-auto w-auto p-5 m-3 flex justify-center align-center'>
+                                <p>Hello</p>
+                                <label>Title</label> 
+                                <p>{item.title}</p>
+                                <label>Plot</label> 
+                                <p>{item.plotSummary.text}</p>
+                            </div>
+                        )
                     })}
                 </div>
+                <button onClick={handleClose} className='py-3 px-8 self-end font-bold hover:bg-violet-600 border rounded-md'>Close</button>
             </div>
         </>
         </ReactPortal>
