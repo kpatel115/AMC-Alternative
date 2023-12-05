@@ -4,14 +4,14 @@ import ReactPortal  from './ReactPortal';
 
 interface ConfirmationModalProps {
     // children: React.ReactChildren | React.ReactChild;
-    children: React.ReactNode
+    // children: React.ReactNode
     isOpen: boolean;
     id: string;
     handleClose: () => void;
 }
 
 const ConfirmationModal = ({
-    children,
+    // children,
     isOpen,
     id,
     handleClose
