@@ -4,14 +4,14 @@ import ReactPortal  from './ReactPortal';
 
 interface ConfirmationModalProps {
     // children: React.ReactChildren | React.ReactChild;
-    // children: React.ReactNode
+    children: React.ReactNode
     isOpen: boolean;
     id: string;
     handleClose: () => void;
 }
 
 const ConfirmationModal = ({
-    // children,
+    children,
     isOpen,
     id,
     handleClose
@@ -76,7 +76,7 @@ const ConfirmationModal = ({
             
             <div className='fixed rounded flex flex-col box-border min-w-fit overflow-hidden p-5 bg-zinc-800 inset-y-32 inset-x-32'> 
                 <div className='box-border'>
-                    {/* {children} */}
+                    {children}
                     {container && container.map((item) => {
                         return (
                             <div className='h-auto w-auto p-5 m-3 flex justify-center align-center'>
