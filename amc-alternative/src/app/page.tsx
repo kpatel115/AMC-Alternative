@@ -13,7 +13,7 @@ function App() {
   const [container, setContainer] = useState<any[]>([]);
   const [finalPoint, setFinalPoint] = useState<string>('');
 
-  const [confirmationModalOpen, setConfirmationModalOpen] = useState<boolean>(false);
+  const [confirmationModalOpen, setConfirmationModalOpen] = useState<boolean>(true);
 
 
 
@@ -68,9 +68,8 @@ function App() {
 
           return (
             <div key={index} className='h-96 p-3 rounded-lg mt-0 mb-0 ml-auto mr-auto'>
-              <img src={item.image.url} alt="Poster for displayed movie" />
+              <img src={item.image} alt="Poster for displayed movie" />
               <p>{item.title}</p>
-              <p>{item.id.replace(/\D/g,'')}</p>
 
               <button
               type='button'
