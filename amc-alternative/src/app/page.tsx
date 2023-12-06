@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
 import Link from 'next/link';
 import ConfirmationModal from '../components/ConfirmationModal';
@@ -18,7 +18,7 @@ function App() {
 
 
   // Main Fetch API for Search Results
-  const fetchMe = () => {
+  const fetchMe = useCallback(() => {
     fetch(`https://online-movie-database.p.rapidapi.com/title/v2/find?title=+${endPoint}&limit=8`, {
       'method': 'GET',
       'headers': {
@@ -36,11 +36,12 @@ function App() {
       .catch(err => {
         console.error(err);
       });
-  }
+  }, [] )
 
   useEffect(() => {
     fetchMe()
   }, [finalPoint,fetchMe])
+  
   // const onClickDetails = () => {
   //   setMovieID(movieID)
   // }

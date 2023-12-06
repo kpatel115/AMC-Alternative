@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import ReactPortal from './ReactPortal';
 
 
@@ -35,14 +35,9 @@ const ConfirmationModal = ({
             document.body.style.overflow = 'unset';
         };
     }, [isOpen]);
-
-    // get details
-    useEffect(() => {
-        fetchDetails()
-    }, [id]);
     // FetchDetails function used in the useEffect #3
 
-    const fetchDetails = () => {
+    const fetchDetails = useCallback(() => {
         fetch(`https://online-movie-database.p.rapidapi.com/title/get-overview-details?tconst=${id}&currentCountry=US`, {
             'method': 'GET',
             'headers': {
@@ -61,7 +56,13 @@ const ConfirmationModal = ({
             .catch(err => {
                 console.error('error fetching data', err);
             });
-    }
+    }, [])
+
+    // get details
+    useEffect(() => {
+        fetchDetails()
+    }, [id, fetchDetails]);
+    
 
 
 
