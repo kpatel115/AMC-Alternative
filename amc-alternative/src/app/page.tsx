@@ -1,24 +1,29 @@
 'use client';
-import React, { useState, useEffect, useCallback } from 'react';
-import {BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
-import Link from 'next/link';
-import ConfirmationModal from '../components/ConfirmationModal';
-
+import React, { useState, useEffect } from 'react';
+// import ConfirmationModal from '../components/ConfirmationModal';
+import Modal from '../components/Modal'
+import { useGetData } from '@/custom-hook/DetailsData';
 
 // Main Function for web app
 function App() {
-  // const [movieID, setMovieID] = useState<string>('');
 
   const [endPoint, setEndpoints] = useState<string>('');
   const [container, setContainer] = useState<any[]>([]);
   const [finalPoint, setFinalPoint] = useState<string>('');
+  const [selectionModel, setSelectionModel] = useState<string[]>([])
+  
+  const [openModal, setOpenModal] = useState<Array<boolean>>([]);
 
-  const [confirmationModalOpen, setConfirmationModalOpen] = useState<boolean>(true);
+  // const {detailData, getData } = useGetData();
+  // const [confirmationModalOpen, setConfirmationModalOpen] = useState<boolean>(false);
 
 
+  useEffect(() => {
+    fetchMe()
+  }, [finalPoint])
 
   // Main Fetch API for Search Results
-  const fetchMe = useCallback(() => {
+  const fetchMe = () => {
     fetch(`https://online-movie-database.p.rapidapi.com/title/v2/find?title=+${endPoint}&limit=8`, {
       'method': 'GET',
       'headers': {
@@ -27,26 +32,32 @@ function App() {
       }
     })
       .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error!  Status: ${response.status}`)
+        }
+        console.log(response)
         return response.json();
       })
       .then(data => {
         console.log(data.results);
-        setContainer(data.results) 
+        setContainer(data.results)
+        setOpenModal(new Array<boolean>(data.results.length).fill(false));
       })
       .catch(err => {
         console.error(err);
       });
-  }, [] )
 
-  useEffect(() => {
-    fetchMe()
-  }, [finalPoint,fetchMe])
-  
+      //setOpenModal(new Array(data.results.length).fill(false));
+  };
+
+
+
   // const onClickDetails = () => {
   //   setMovieID(movieID)
   // }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setEndpoints(e.target.value)
   }
 
@@ -54,6 +65,23 @@ function App() {
     e.preventDefault()
     setFinalPoint(endPoint)
   }
+
+  const handleOpen = (index:number) => {
+    setOpenModal((prev) => {
+      const newOpenModal = [...prev];
+      newOpenModal[index] = true;
+      return newOpenModal;
+    })
+}
+const handleClose = (index: number) => {
+  
+    setOpenModal((prev) => {
+      const newOpenModal = [...prev];
+      newOpenModal[index] = false;
+      return newOpenModal;
+    })  
+  // setOpen(false)
+}
 
   // Main Function Return
   return (
@@ -68,33 +96,27 @@ function App() {
         {container.map((item, index) => {
 
           return (
-            <div key={index} className='h-96 p-3 rounded-lg mt-0 mb-0 ml-auto mr-auto'>
-              <img src={item.image} alt="Poster for displayed movie" />
+            <div key={index} className='w-300 h-200 bg-gray-300 overflow-hidden p-3 rounded-lg mt-0 mb-0 ml-auto mr-auto'>
+              <img className='w-full h-full object-cover' src={item.image.url} alt="Poster for displayed movie" />
               <p>{item.title}</p>
-
+              <p>{item.id.replace(/\D/g, '')}</p>
               <button
-              type='button'
-              onClick={() => 
-              setConfirmationModalOpen(!confirmationModalOpen)
-              }>
+                type='button'
+                onClick={() => handleOpen(index)}>
                 Details
               </button>
+              {/* Modal */}
+              <Modal
+                id={item.id.replace(/\D/g, '')}
+                open={openModal[index]}
+                onClose={() => handleClose(index)}
+              />
+             
 
-              {confirmationModalOpen && (
-                <ConfirmationModal
-                id={item.id.replace(/\D/g,'')}
-                isOpen={confirmationModalOpen}
-                handleClose={() => setConfirmationModalOpen(!confirmationModalOpen)}
-                />  
-                
-              
-              
-                
-           
-          )}
-          </div>
+            </div>
+          )
+        }
         )}
-      )}
       </div>
     </div>
   )
