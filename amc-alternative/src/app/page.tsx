@@ -18,6 +18,7 @@ import {
   where,
 } from "firebase/firestore";
 import Header from "@/components/header";
+import { MdLocalMovies } from "react-icons/md";
 
 // Main Function for web app
 function App() {

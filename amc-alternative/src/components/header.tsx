@@ -2,6 +2,8 @@ import React from "react";
 import { auth, db } from "../../firebase/firebase";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { MdLocalMovies } from "react-icons/md";
+
 
 function Header() {
   const router = useRouter();
@@ -9,7 +11,8 @@ function Header() {
   return (
     <div className="bg-white  p-3 flex justify-between items-center">
       <div className="text-center text-[24px] font-[700] text-black">
-        <Link href={"/"}>LOGO</Link>
+        <Link href={"/"}><MdLocalMovies /><p> Movie Searcher 3000</p>
+</Link>
       </div>
       <div className="flex gap-5 ">
         {" "}
