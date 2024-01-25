@@ -25,118 +25,94 @@ function App() {
 
   const [endPoint, setEndpoints] = useState<string>("");
   const [container, setContainer] = useState<any[]>([
-    // {
-    //   id: "/title/tt2705436/",
-    //   image: {
-    //     height: 1000,
-    //     id: "/title/tt2705436/images/rm1596077569",
-    //     url: "https://m.media-amazon.com/images/M/MV5BZWQxMjcwNjItZjI0ZC00ZTc4LWIwMzItM2Q0YTZhNzI3NzdlXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
-    //     width: 706,
-    //   },
-    //   title: "Italian Spiderman",
-    //   titleType: "short",
-    //   year: 2007,
-    // },
-    // {
-    //   id: "/title/tt12122034/",
-    //   image: {
-    //     height: 960,
-    //     id: "/title/tt12122034/images/rm1109638401",
-    //     url: "https://m.media-amazon.com/images/M/MV5BNjA2NmZhOGEtZTQ5OS00MDI0LTg4N2UtYTRmOTllM2I2NDlhXkEyXkFqcGdeQXVyNTU4OTE5Nzc@._V1_.jpg",
-    //     width: 679,
-    //   },
-    //   title: "Spiderman the Verse",
-    //   titleType: "tvMiniSeries",
-    //   year: 2019,
-    // },
-    // {
-    //   id: "/title/tt18351128/",
-    //   image: {
-    //     height: 1350,
-    //     id: "/title/tt18351128/images/rm550377985",
-    //     url: "https://m.media-amazon.com/images/M/MV5BYzYzZDViNWYtNWViMS00NDMxLThlN2YtZjFkOWMwODkzNzhiXkEyXkFqcGdeQXVyMTUwMzM4NzU0._V1_.jpg",
-    //     width: 1080,
-    //   },
-    //   title: "The Amazing Spiderman 2 Webb Cut",
-    //   titleType: "movie",
-    //   year: 2021,
-    // },
-    // {
-    //   id: "/title/tt3696826/",
-    //   title: "Spiderman 5",
-    //   titleType: "short",
-    //   year: 2008,
-    // },
-    // {
-    //   id: "/title/tt24154050/",
-    //   image: {
-    //     height: 720,
-    //     id: "/title/tt24154050/images/rm1070803969",
-    //     url: "https://m.media-amazon.com/images/M/MV5BNWNkMzY3NjQtZmUwNy00ODlhLTk1MDctMzYzNmFhNzhhNzg0XkEyXkFqcGdeQXVyMTI0NTA1MDI3._V1_.jpg",
-    //     width: 1280,
-    //   },
-    //   title: "Hyundai Ioniq 5: Spiderman Only Way Home",
-    //   titleType: "video",
-    //   year: 2021,
-    // },
-    // {
-    //   id: "/title/tt9146610/",
-    //   image: {
-    //     height: 480,
-    //     id: "/title/tt9146610/images/rm1631024640",
-    //     url: "https://m.media-amazon.com/images/M/MV5BYWU5YTg2ODgtYjY5Mi00ZDJhLTkyYjktYWRmNTc3ZjQ4YmJkXkEyXkFqcGdeQXVyODE4Njg5ODQ@._V1_.jpg",
-    //     width: 640,
-    //   },
-    //   title: "Discount Spiderman 2",
-    //   titleType: "movie",
-    //   year: 2018,
-    // },
-    // {
-    //   id: "/title/tt7575846/",
-    //   image: {
-    //     height: 639,
-    //     id: "/title/tt7575846/images/rm2109888512",
-    //     url: "https://m.media-amazon.com/images/M/MV5BNDM5ODA3ZDYtN2VjNy00OTI0LWFlNWYtYTc5ZjJlOTlhNWJlXkEyXkFqcGdeQXVyODE4Njg5ODQ@._V1_.jpg",
-    //     width: 960,
-    //   },
-    //   title: "Discount Spiderman: Origins",
-    //   titleType: "short",
-    //   year: 2017,
-    // },
-    // {
-    //   id: "/title/tt0100669/",
-    //   title: "Spiderman",
-    //   titleType: "short",
-    //   year: 1990,
-    // },
-
-    // {
-    //   id: "/title/tt7575846/",
-    //   image: {
-    //     height: 639,
-    //     id: "/title/tt7575846/images/rm2109888512",
-    //     url: "https://m.media-amazon.com/images/M/MV5BNDM5ODA3ZDYtN2VjNy00OTI0LWFlNWYtYTc5ZjJlOTlhNWJlXkEyXkFqcGdeQXVyODE4Njg5ODQ@._V1_.jpg",
-    //     width: 960,
-    //   },
-    //   title: "Discount Spiderman: Origins",
-    //   titleType: "short",
-    //   year: 2017,
-    // },
-    // {
-    //   id: "/title/tt0100669/",
-    //   title: "Spiderman",
-    //   titleType: "short",
-    //   year: 1990,
-    // },
+    {
+      id: "/title/tt2705436/",
+      image: {
+        height: 1000,
+        id: "/title/tt2705436/images/rm1596077569",
+        url: "https://m.media-amazon.com/images/M/MV5BZWQxMjcwNjItZjI0ZC00ZTc4LWIwMzItM2Q0YTZhNzI3NzdlXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
+        width: 706,
+      },
+      title: "Italian Spiderman",
+      titleType: "short",
+      year: 2007,
+    },
+    {
+      id: "/title/tt12122034/",
+      image: {
+        height: 960,
+        id: "/title/tt12122034/images/rm1109638401",
+        url: "https://m.media-amazon.com/images/M/MV5BNjA2NmZhOGEtZTQ5OS00MDI0LTg4N2UtYTRmOTllM2I2NDlhXkEyXkFqcGdeQXVyNTU4OTE5Nzc@._V1_.jpg",
+        width: 679,
+      },
+      title: "Spiderman the Verse",
+      titleType: "tvMiniSeries",
+      year: 2019,
+    },
+    {
+      id: "/title/tt18351128/",
+      image: {
+        height: 1350,
+        id: "/title/tt18351128/images/rm550377985",
+        url: "https://m.media-amazon.com/images/M/MV5BYzYzZDViNWYtNWViMS00NDMxLThlN2YtZjFkOWMwODkzNzhiXkEyXkFqcGdeQXVyMTUwMzM4NzU0._V1_.jpg",
+        width: 1080,
+      },
+      title: "The Amazing Spiderman 2 Webb Cut",
+      titleType: "movie",
+      year: 2021,
+    },
+    {
+      id: "/title/tt3696826/",
+      title: "Spiderman 5",
+      titleType: "short",
+      year: 2008,
+    },
+    {
+      id: "/title/tt24154050/",
+      image: {
+        height: 720,
+        id: "/title/tt24154050/images/rm1070803969",
+        url: "https://m.media-amazon.com/images/M/MV5BNWNkMzY3NjQtZmUwNy00ODlhLTk1MDctMzYzNmFhNzhhNzg0XkEyXkFqcGdeQXVyMTI0NTA1MDI3._V1_.jpg",
+        width: 1280,
+      },
+      title: "Hyundai Ioniq 5: Spiderman Only Way Home",
+      titleType: "video",
+      year: 2021,
+    },
+    {
+      id: "/title/tt9146610/",
+      image: {
+        height: 480,
+        id: "/title/tt9146610/images/rm1631024640",
+        url: "https://m.media-amazon.com/images/M/MV5BYWU5YTg2ODgtYjY5Mi00ZDJhLTkyYjktYWRmNTc3ZjQ4YmJkXkEyXkFqcGdeQXVyODE4Njg5ODQ@._V1_.jpg",
+        width: 640,
+      },
+      title: "Discount Spiderman 2",
+      titleType: "movie",
+      year: 2018,
+    },
+    {
+      id: "/title/tt7575846/",
+      image: {
+        height: 639,
+        id: "/title/tt7575846/images/rm2109888512",
+        url: "https://m.media-amazon.com/images/M/MV5BNDM5ODA3ZDYtN2VjNy00OTI0LWFlNWYtYTc5ZjJlOTlhNWJlXkEyXkFqcGdeQXVyODE4Njg5ODQ@._V1_.jpg",
+        width: 960,
+      },
+      title: "Discount Spiderman: Origins",
+      titleType: "short",
+      year: 2017,
+    },
+    {
+      id: "/title/tt0100669/",
+      title: "Spiderman",
+      titleType: "short",
+      year: 1990,
+    },
   ]);
   const [finalPoint, setFinalPoint] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
-
-  // const [selectionModel, setSelectionModel] = useState<string[]>([])
   const [open, setOpen] = useState(null);
-  // const {detailData, getData } = useGetData();
-  // const [confirmationModalOpen, setConfirmationModalOpen] = useState<boolean>(false);
-
   useEffect(() => {
     fetchMe();
   }, [finalPoint]);
@@ -285,10 +261,6 @@ function App() {
       };
 
       const collectionRef = collection(db, "Movies");
-
-
-      // const docRef = await addDoc(collectionRef, userSavedata);
-      // console.log(docRef, "docRef")
       const querySnapshot = await getDocs(
         query(
           collectionRef,

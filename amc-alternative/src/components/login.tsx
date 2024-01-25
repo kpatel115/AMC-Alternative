@@ -132,7 +132,7 @@ function Login() {
         <div className="border border-gray-300 w-[600px] shadow-md   p-5 rounded-[10px]">
           <div className="my-4">
             <h2 className="text-center text-[24px] font-[700] text-white">
-              Login Form
+              Welcome to Movie Searcher 3000
             </h2>
             <label className=""> Email</label>
             <input
