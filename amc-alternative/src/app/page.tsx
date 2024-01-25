@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-// import ConfirmationModal from '../components/ConfirmationModal';
 import Modal from "../components/Modal";
 import { useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
