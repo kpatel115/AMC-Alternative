@@ -137,7 +137,7 @@ function Login() {
             <label className=""> Email</label>
             <input
               type="email"
-              placeholder="enter your email"
+              placeholder="Enter your email"
               className="border border-gray-300 shadow-md w-full p-3 rounded-[5px]  text-black"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -148,7 +148,7 @@ function Login() {
             <label className=""> Password</label>
             <input
               type="password"
-              placeholder="enter your email"
+              placeholder="Enter your password"
               className="border border-gray-300 shadow-md w-full p-3 rounded-[5px] text-black"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
