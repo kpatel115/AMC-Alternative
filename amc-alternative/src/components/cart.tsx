@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 import {
   collection,
-  addDoc,
+  updateDoc,
   doc,
   deleteDoc,
   getDoc,
@@ -87,7 +87,20 @@ function Cart() {
     }
   };
 
-  // delete end
+  // update end
+  const updateDocumentsBasedOnQuery = async (docId: any) => {
+    setLoading(true);
+    try {
+      const collectionRef = collection(db, "Movies");
+      await updateDoc(docId);
+      getdataofFirbase();
+      setLoading(docId);
+      toast.success("Update Successfully");
+    } catch (error) {
+      console.error("Error deleting documents based on query: ", error);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -95,6 +108,7 @@ function Cart() {
 
       <div className="bg-black h-screen">
         <div className="w-[90%] mx-auto  ">
+
           <p className="text-white text-[25px] pt-3 m-0">Cart Section</p>
           <div className="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-4 ">
             {cartItems &&
@@ -124,6 +138,13 @@ function Cart() {
                         onClick={() => handleOpen(item)}
                       >
                         Details
+                      </button>
+                      <button
+                        type="button"
+                        className="bg-[#a2d395] text-white p-2 px-6 rounded-[5px]"
+                        onClick={() => updateDocumentsBasedOnQuery(item.docId)}
+                      >
+                        Update
                       </button>
 
                       <button

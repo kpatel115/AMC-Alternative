@@ -70,7 +70,7 @@ const Modal = (props: ModalProps) => {
             <div>
               <p className=" text-[18px] ">
                 <label className="mr-4 ">plotSummary:</label>
-                {props.open.year}
+                {props.open.plotSummary.text}
               </p>
             </div>
           </div>
