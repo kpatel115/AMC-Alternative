@@ -87,20 +87,20 @@ function Cart() {
     }
   };
 
-  // update end
-  const updateDocumentsBasedOnQuery = async (docId: any) => {
-    setLoading(true);
-    try {
-      const collectionRef = collection(db, "Movies");
-      await updateDoc(docId);
-      getdataofFirbase();
-      setLoading(docId);
-      toast.success("Update Successfully");
-    } catch (error) {
-      console.error("Error deleting documents based on query: ", error);
-      setLoading(false);
-    }
-  };
+  // // update end
+  // const updateDocumentsBasedOnQuery = async (docId: any) => {
+  //   setLoading(true);
+  //   try {
+  //     const collectionRef = collection(db, "Movies");
+  //     await updateDoc(docId);
+  //     getdataofFirbase();
+  //     setLoading(docId);
+  //     toast.success("Update Successfully");
+  //   } catch (error) {
+  //     console.error("Error deleting documents based on query: ", error);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="bg-white">
@@ -142,7 +142,7 @@ function Cart() {
                       <button
                         type="button"
                         className="bg-[#a2d395] text-white p-2 px-6 rounded-[5px]"
-                        onClick={() => updateDocumentsBasedOnQuery(item.docId)}
+                        onClick={() => handleOpen(item)}
                       >
                         Update
                       </button>
