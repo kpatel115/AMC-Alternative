@@ -133,17 +133,13 @@ function App() {
         console.log(response.json);
         return response.json();
       })
-      .then((data) => { 
+      .then((data) => {
         setContainer(data.results);
       })
       .catch((err) => {
         console.error(err);
       });
   };
-
-  // const onClickDetails = () => {
-  //   setMovieID(movieID)
-  // }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEndpoints(e.target.value);
@@ -268,7 +264,7 @@ function App() {
           where("userId", "==", userId)
         )
       );
-      
+
       if (querySnapshot.docs.length > 0) {
         toast.error("Movie already added in to cart");
       } else {
@@ -276,7 +272,6 @@ function App() {
         toast.success("Movie  added  to cart");
       }
 
-      // console.log("Document written with ID:", docRef.id);
     } catch (error) {
       console.error("Error adding document:", error);
     }
@@ -364,6 +359,17 @@ function App() {
                         Details
                       </button>
 
+{/* 
+                      <button
+                        type="button"
+                        className="bg-[#E20031] text-white p-2 px-6 rounded-[5px]"
+                        onClick={() => handleUpdate(item)}
+                      >
+                        Update
+                      </button> */}
+
+
+
                       <button
                         onClick={() => dataSaveInFirebaseHandler(item)}
                         className="bg-[#54AEFF] p-2  px-2 rounded-[5px] text-white"
@@ -380,6 +386,13 @@ function App() {
               open={open}
               onClose={handleClose}
             />
+
+
+            {/* <UpdateModal
+              open={update}
+              update={update}
+              onClose={handleUpdateClose}
+            /> */}
           </div>
         </div>
       </div>
