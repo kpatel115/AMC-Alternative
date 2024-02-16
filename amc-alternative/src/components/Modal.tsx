@@ -11,6 +11,7 @@ type ModalProps = {
 };
 
 const Modal = (props: ModalProps) => {
+  console.log(props, "props");
   if (!props.open) return <></>;
 
   return (
@@ -27,7 +28,7 @@ const Modal = (props: ModalProps) => {
       >
         <div className="w-full flex flex-col">
           <div className="flex justify-between items-center px-4 py-2">
-            <h1 className="text-[24px]  font-[700]">Movie title</h1>
+            <h1 className="text-[24px]  font-[700]">Movie Details</h1>
 
             <p
               className="flex justify-start m-3 bg-slate-300 rounded p-2 hover:bg-slate-700 text-white"
@@ -36,12 +37,6 @@ const Modal = (props: ModalProps) => {
               X
             </p>
           </div>
-
-          {/* <div className='flex flex-col items-start text-center mt-3 p-2 py-4'>
-                        <p>{detailData}</p>
-                        asdasdasdasd
-                       
-                    </div> */}
         </div>
 
         <div className="px-4  w-full">
@@ -70,7 +65,13 @@ const Modal = (props: ModalProps) => {
             <div>
               <p className=" text-[18px] ">
                 <label className="mr-4 ">plotSummary:</label>
-                {props.open.plotSummary.text}
+                {props?.open?.plotSummary?.text}
+              </p>
+            </div>
+            <div>
+              <p className=" text-[18px] ">
+                <label className="mr-4 ">Notes:</label>
+                {props?.open?.notes}
               </p>
             </div>
           </div>
