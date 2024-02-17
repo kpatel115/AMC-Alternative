@@ -32,7 +32,9 @@ interface UpdateData {
 }
 
 const UpdateModal = (props: ModalProps) => {
+  
   if (!props.open) return <></>;
+
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(false);
@@ -100,8 +102,7 @@ const UpdateModal = (props: ModalProps) => {
               <button
                 type="submit"
                 className="bg-[#E20031] text-white p-2 mt-2 px-6 rounded-[5px] w-full"
-
-                // onClick={() => props.handleTitleUpdate(dataToSend)}
+                onClick={() => props.handleTitleUpdate(dataToSend)}
               >
                 Update
               </button>
