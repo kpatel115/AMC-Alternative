@@ -31,7 +31,7 @@ interface UpdateData {
 }
 
 const UpdateModal = (props: ModalProps) => {
-  // if (!props.open) return <></>;
+  if (!props.open) return <></>;
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(false);
