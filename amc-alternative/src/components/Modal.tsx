@@ -37,6 +37,12 @@ const Modal = (props: ModalProps) => {
               X
             </p>
           </div>
+
+          {/* <div className='flex flex-col items-start text-center mt-3 p-2 py-4'>
+                        <p>{detailData}</p>
+                        asdasdasdasd
+                       
+                    </div> */}
         </div>
 
         <div className="px-4  w-full">

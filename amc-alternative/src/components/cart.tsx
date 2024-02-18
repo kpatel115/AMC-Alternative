@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import Image from "next/image";
 import Modal from "./Modal";
+import UpdateModal from "./UpdateModal";
 
 function Cart() {
   const [open, setOpen] = useState(null);
@@ -24,9 +25,31 @@ function Cart() {
   const [userId, setUserId] = useState<string>("");
   const [cartItems, setCartItem] = useState<[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [update, setUpdate]: any = useState(null);
+  const [updateMovieId, setMovieId] = useState("");
 
   const handleOpen = (item: any) => {
     setOpen(item);
+  };
+  interface UpdatedItem {
+    [key: string]: any;
+  }
+
+  interface UpdatedItem {
+    title: string;
+    notes: string; // Assuming notes is of type string
+    year: number; // Assuming year is of type number
+    titleType: string; // Assuming titleType is of type string
+    image: {
+      height: number;
+      width: number;
+      url: string;
+      id: string;
+    }; // Assuming image is an object with specific properties
+  }
+
+  const handleUpdateClose = () => {
+    setUpdate(null);
   };
   const handleClose = () => {
     setOpen(null);
@@ -62,6 +85,35 @@ function Cart() {
       setCartItem(arrayof);
     } catch (error) {
       console.error("Error adding document: ", error);
+    }
+  };
+  const handleUpdate = (item: any) => {
+    setUpdate(item);
+  };
+
+  const handleTitleUpdate = async (item: any) => {
+    const updatedItem: UpdatedItem = {
+      title: item.title,
+      notes: item.note,
+      year: update.year,
+      titleType: update.titleType,
+      image: update.image,
+    };
+    const id = update.docId;
+    console.log(id, "docId");
+
+    if (item && id) {
+      try {
+        const collectionRef = collection(db, "Movies");
+        await updateDoc(doc(collectionRef, id), updatedItem); // newData should contain the updated fields
+        getdataofFirbase();
+        setUpdate(null);
+
+        toast.success("Updated Successfully");
+      } catch (error) {
+        console.error("Error updating document: ", error);
+        setLoading(false);
+      }
     }
   };
 
@@ -101,14 +153,13 @@ function Cart() {
   //     setLoading(false);
   //   }
   // };
-
+  console.log(cartItems, "here is cart");
   return (
     <div className="bg-white">
       <Header />
 
       <div className="bg-black h-screen">
         <div className="w-[90%] mx-auto  ">
-
           <p className="text-white text-[25px] pt-3 m-0">Cart Section</p>
           <div className="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-4 ">
             {cartItems &&
@@ -142,7 +193,7 @@ function Cart() {
                       <button
                         type="button"
                         className="bg-[#a2d395] text-white p-2 px-6 rounded-[5px]"
-                        onClick={() => handleOpen(item)}
+                        onClick={() => handleUpdate(item)}
                       >
                         Update
                       </button>
@@ -166,6 +217,13 @@ function Cart() {
 
           open={open}
           onClose={handleClose}
+        />
+        <UpdateModal
+          open={update}
+          update={update}
+          id={1}
+          onClose={handleUpdateClose}
+          handleTitleUpdate={handleTitleUpdate}
         />
       </div>
     </div>

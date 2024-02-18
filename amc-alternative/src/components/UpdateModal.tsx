@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useGetData } from "../custom-hook/DetailsData";
 import Image from "next/image";
-import { toast, Toast } from "./Toast";
+import { toast, Toast } from "../components/Toast";
 import { auth, db } from "../../firebase/firebase";
 
 import {
@@ -14,7 +14,6 @@ import {
   getDocs,
   query,
   where,
-//   UpdateData,
 } from "firebase/firestore";
 // just to display the stuff
 type ModalProps = {
@@ -32,9 +31,7 @@ interface UpdateData {
 }
 
 const UpdateModal = (props: ModalProps) => {
-  
-  //if (!props.open) return <></>;
-
+  if (!props.open) return <></>;
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(false);
@@ -102,7 +99,8 @@ const UpdateModal = (props: ModalProps) => {
               <button
                 type="submit"
                 className="bg-[#E20031] text-white p-2 mt-2 px-6 rounded-[5px] w-full"
-                onClick={() => props.handleTitleUpdate(dataToSend)}
+
+                // onClick={() => props.handleTitleUpdate(dataToSend)}
               >
                 Update
               </button>

@@ -17,7 +17,6 @@ import {
   where,
 } from "firebase/firestore";
 import Header from "@/components/header";
-import { MdLocalMovies } from "react-icons/md";
 
 // Main Function for web app
 function App() {
@@ -113,6 +112,7 @@ function App() {
   const [finalPoint, setFinalPoint] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
   const [open, setOpen] = useState(null);
+
   useEffect(() => {
     fetchMe();
   }, [finalPoint]);
@@ -141,6 +141,10 @@ function App() {
       });
   };
 
+  // const onClickDetails = () => {
+  //   setMovieID(movieID)
+  // }
+
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEndpoints(e.target.value);
   };
@@ -152,10 +156,13 @@ function App() {
 
   const handleOpen = (item: any) => {
     setOpen(item);
+
   };
+ 
   const handleClose = () => {
     setOpen(null);
   };
+ 
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -272,6 +279,7 @@ function App() {
         toast.success("Movie  added  to cart");
       }
 
+      // console.log("Document written with ID:", docRef.id);
     } catch (error) {
       console.error("Error adding document:", error);
     }
