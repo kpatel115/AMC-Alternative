@@ -1,0 +1,4 @@
+{
+    "installCommand": "npm run prebuild && npm install"
+}  
+  
